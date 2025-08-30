@@ -44,14 +44,14 @@ export default function Navbar() {
                 ExpenseTracker
               </span>
             </div>
-            {user && (
+            {user ? (
               <div className="hidden md:flex items-center space-x-4">
                 <a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground">Dashboard</a>
                 <a href="/expenses" className="text-sm font-medium text-muted-foreground hover:text-foreground">Expenses</a>
                 <a href="/categories" className="text-sm font-medium text-muted-foreground hover:text-foreground">Categories</a>
                 <a href="/budgets" className="text-sm font-medium text-muted-foreground hover:text-foreground">Budgets</a>
               </div>
-            )}
+            ) : null}
           </div>
 
           {/* Mobile menu button */}

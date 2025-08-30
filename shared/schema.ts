@@ -137,7 +137,7 @@ export const insertExpenseSchema = createInsertSchema(expenses).omit({
   userId: true,
   createdAt: true,
 }).extend({
-  date: z.string().or(z.date()).transform((val) => new Date(val)),
+  date: z.string().transform((val) => new Date(val)),
 });
 
 export const insertIncomeSchema = createInsertSchema(income).omit({
@@ -145,7 +145,7 @@ export const insertIncomeSchema = createInsertSchema(income).omit({
   userId: true,
   createdAt: true,
 }).extend({
-  date: z.string().or(z.date()).transform((val) => new Date(val)),
+  date: z.string().transform((val) => new Date(val)),
 });
 
 export const insertBudgetSchema = createInsertSchema(budgets).omit({
@@ -153,7 +153,7 @@ export const insertBudgetSchema = createInsertSchema(budgets).omit({
   userId: true,
   createdAt: true,
 }).extend({
-  startDate: z.string().or(z.date()).transform((val) => new Date(val)),
+  startDate: z.string().transform((val) => new Date(val)),
 });
 
 // Types
