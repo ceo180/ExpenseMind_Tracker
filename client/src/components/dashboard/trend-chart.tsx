@@ -12,17 +12,24 @@ export default function TrendChart() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Set proper canvas dimensions for high DPI displays
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+
     // Sample data for demonstration
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
     const expenseData = [2100, 2350, 2800, 2650, 2400, 2750, 2900, 2450, 2650, 2550, 2847];
     const budgetData = [3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3500];
 
     // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, rect.width, rect.height);
 
     const padding = 40;
-    const chartWidth = canvas.width - padding * 2;
-    const chartHeight = canvas.height - padding * 2;
+    const chartWidth = rect.width - padding * 2;
+    const chartHeight = rect.height - padding * 2;
 
     const maxValue = Math.max(...expenseData, ...budgetData);
     const minValue = 0;
@@ -98,7 +105,7 @@ export default function TrendChart() {
     
     months.forEach((month, index) => {
       const x = padding + (chartWidth / (months.length - 1)) * index;
-      ctx.fillText(month, x, canvas.height - 10);
+      ctx.fillText(month, x, rect.height - 10);
     });
 
     // Draw value labels
@@ -124,9 +131,7 @@ export default function TrendChart() {
           <div className="relative h-64">
             <canvas
               ref={chartRef}
-              width={400}
-              height={300}
-              className="w-full"
+              className="w-full h-full"
               data-testid="canvas-trend-chart"
             />
           </div>

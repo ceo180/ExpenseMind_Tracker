@@ -20,8 +20,15 @@ export default function CategoryChart({ data }: CategoryChartProps) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Set proper canvas dimensions for high DPI displays
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+
     // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, rect.width, rect.height);
 
     // Calculate totals and angles
     const total = data.reduce((sum, item) => sum + item.total, 0);
@@ -32,8 +39,8 @@ export default function CategoryChart({ data }: CategoryChartProps) {
       '#F97316', '#06B6D4', '#8B5CF6', '#EC4899', '#84CC16'
     ];
 
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
     const radius = Math.min(centerX, centerY) - 20;
 
     let currentAngle = -Math.PI / 2; // Start at top
@@ -95,9 +102,7 @@ export default function CategoryChart({ data }: CategoryChartProps) {
             <div className="relative h-64">
               <canvas
                 ref={chartRef}
-                width={300}
-                height={300}
-                className="mx-auto"
+                className="w-64 h-64 mx-auto"
                 data-testid="canvas-category-chart"
               />
             </div>
