@@ -15,6 +15,10 @@ import { z } from "zod";
 import { format } from "date-fns";
 
 const formSchema = insertExpenseSchema.extend({
+  amount: z.string().min(1, "Amount is required"),
+  categoryId: z.string().min(1, "Category is required"),
+  description: z.string().min(1, "Description is required"),
+  paymentMethod: z.string().min(1, "Payment method is required"),
   date: z.string().min(1, "Date is required"),
 });
 
@@ -55,7 +59,7 @@ export default function ExpenseForm({ expense, onSuccess }: ExpenseFormProps) {
     mutationFn: async (data: FormData) => {
       const payload = {
         ...data,
-        date: new Date(data.date).toISOString(),
+        date: data.date, // Let backend handle date transformation
         amount: data.amount,
       };
 

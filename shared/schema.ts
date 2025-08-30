@@ -136,18 +136,24 @@ export const insertExpenseSchema = createInsertSchema(expenses).omit({
   id: true,
   userId: true,
   createdAt: true,
+}).extend({
+  date: z.string().or(z.date()).transform((val) => new Date(val)),
 });
 
 export const insertIncomeSchema = createInsertSchema(income).omit({
   id: true,
   userId: true,
   createdAt: true,
+}).extend({
+  date: z.string().or(z.date()).transform((val) => new Date(val)),
 });
 
 export const insertBudgetSchema = createInsertSchema(budgets).omit({
   id: true,
   userId: true,
   createdAt: true,
+}).extend({
+  startDate: z.string().or(z.date()).transform((val) => new Date(val)),
 });
 
 // Types
