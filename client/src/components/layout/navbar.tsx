@@ -68,7 +68,7 @@ export default function Navbar() {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative h-8 w-8 rounded-full p-0" data-testid="button-user-menu">
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src={user.profileImageUrl || ""} alt={getUserDisplayName(user)} />
+                      <AvatarImage src={(user as any)?.profileImageUrl || ""} alt={getUserDisplayName(user)} />
                       <AvatarFallback>{getUserInitials(user)}</AvatarFallback>
                     </Avatar>
                   </Button>
@@ -79,7 +79,7 @@ export default function Navbar() {
                       {getUserDisplayName(user)}
                     </p>
                     <p className="text-xs leading-none text-muted-foreground" data-testid="text-user-email">
-                      {user.email}
+                      {(user as any)?.email}
                     </p>
                   </div>
                   <DropdownMenuSeparator />
@@ -106,16 +106,16 @@ export default function Navbar() {
         </div>
 
         {/* Mobile user menu */}
-        {isMobileMenuOpen && user && (
+        {isMobileMenuOpen && user ? (
           <div className="lg:hidden border-t border-border py-4" data-testid="mobile-user-menu">
             <div className="flex items-center space-x-3 px-4 py-2">
               <Avatar className="h-10 w-10">
-                <AvatarImage src={user.profileImageUrl || ""} alt={getUserDisplayName(user)} />
+                <AvatarImage src={(user as any)?.profileImageUrl || ""} alt={getUserDisplayName(user)} />
                 <AvatarFallback>{getUserInitials(user)}</AvatarFallback>
               </Avatar>
               <div className="flex flex-col">
                 <p className="text-sm font-medium">{getUserDisplayName(user)}</p>
-                <p className="text-xs text-muted-foreground">{user.email}</p>
+                <p className="text-xs text-muted-foreground">{(user as any)?.email}</p>
               </div>
             </div>
             <div className="mt-3 space-y-1">
@@ -138,7 +138,7 @@ export default function Navbar() {
               </Button>
             </div>
           </div>
-        )}
+        ) : null}
       </div>
     </nav>
   );

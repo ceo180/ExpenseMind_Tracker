@@ -222,7 +222,10 @@ export default function Expenses() {
           </DialogHeader>
           {editingExpense && (
             <ExpenseForm 
-              expense={editingExpense}
+              expense={{
+                ...editingExpense,
+                categoryId: editingExpense.category.id
+              }}
               onSuccess={() => setEditingExpense(null)} 
             />
           )}

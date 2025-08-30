@@ -279,7 +279,10 @@ export default function Budgets() {
           </DialogHeader>
           {editingBudget && (
             <BudgetForm 
-              budget={editingBudget}
+              budget={{
+                ...editingBudget,
+                categoryId: editingBudget.category.id
+              }}
               onSuccess={() => setEditingBudget(null)} 
             />
           )}

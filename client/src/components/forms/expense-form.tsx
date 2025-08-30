@@ -157,7 +157,7 @@ export default function ExpenseForm({ expense, onSuccess }: ExpenseFormProps) {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {categories?.map((category: any) => (
+                  {(categories as any)?.map((category: any) => (
                     <SelectItem key={category.id} value={category.id}>
                       {category.name}
                     </SelectItem>

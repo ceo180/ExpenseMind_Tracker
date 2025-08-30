@@ -31,7 +31,7 @@ export default function Dashboard() {
   });
 
   // Calculate budget alerts
-  const budgetAlerts = budgetProgress?.filter((item: any) => {
+  const budgetAlerts = (budgetProgress as any)?.filter((item: any) => {
     const percentage = (item.spent / parseFloat(item.budget.amount)) * 100;
     return percentage >= 80;
   }) || [];
@@ -78,28 +78,28 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <MetricCard
           title="This Month's Expenses"
-          value={totals?.totalExpenses || 0}
+          value={(totals as any)?.totalExpenses || 0}
           type="expense"
           isLoading={totalsLoading}
           data-testid="metric-total-expenses"
         />
         <MetricCard
           title="Monthly Income"
-          value={totals?.totalIncome || 0}
+          value={(totals as any)?.totalIncome || 0}
           type="income"
           isLoading={totalsLoading}
           data-testid="metric-total-income"
         />
         <MetricCard
           title="Net Savings"
-          value={totals?.netSavings || 0}
+          value={(totals as any)?.netSavings || 0}
           type="savings"
           isLoading={totalsLoading}
           data-testid="metric-net-savings"
         />
         <MetricCard
           title="Budget Remaining"
-          value={budgetProgress?.reduce((sum: number, item: any) => {
+          value={(budgetProgress as any)?.reduce((sum: number, item: any) => {
             const remaining = parseFloat(item.budget.amount) - item.spent;
             return sum + Math.max(0, remaining);
           }, 0) || 0}
@@ -111,17 +111,17 @@ export default function Dashboard() {
 
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <CategoryChart data={monthlyExpenses} />
+        <CategoryChart data={monthlyExpenses as any} />
         <TrendChart />
       </div>
 
       {/* Budget Progress and Recent Transactions */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-4">
-          <BudgetProgress data={budgetProgress} isLoading={budgetLoading} />
+          <BudgetProgress data={budgetProgress as any} isLoading={budgetLoading} />
         </div>
         <div className="lg:col-span-8">
-          <RecentTransactions data={expenses} />
+          <RecentTransactions data={expenses as any} />
         </div>
       </div>
 

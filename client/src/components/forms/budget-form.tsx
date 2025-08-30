@@ -114,7 +114,7 @@ export default function BudgetForm({ budget, onSuccess }: BudgetFormProps) {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {categories?.map((category: any) => (
+                  {(categories as any)?.map((category: any) => (
                     <SelectItem key={category.id} value={category.id}>
                       {category.name}
                     </SelectItem>
