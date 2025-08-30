@@ -1,0 +1,309 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(248, 50%, 99%);
+  --foreground: hsl(222, 84%, 4.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(222, 84%, 4.9%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(222, 84%, 4.9%);
+  --primary: hsl(221, 91%, 60%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(210, 40%, 96%);
+  --secondary-foreground: hsl(222.2, 84%, 4.9%);
+  --muted: hsl(210, 40%, 96%);
+  --muted-foreground: hsl(215.4, 16.3%, 46.9%);
+  --accent: hsl(210, 40%, 96%);
+  --accent-foreground: hsl(222.2, 84%, 4.9%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --border: hsl(214.3, 31.8%, 91.4%);
+  --input: hsl(214.3, 31.8%, 91.4%);
+  --ring: hsl(221, 91%, 60%);
+  --chart-1: hsl(221, 91%, 60%);
+  --chart-2: hsl(160, 84.1%, 39.4%);
+  --chart-3: hsl(30, 80%, 55%);
+  --chart-4: hsl(120, 61%, 50%);
+  --chart-5: hsl(340, 75%, 55%);
+  --sidebar: hsl(0, 0%, 100%);
+  --sidebar-foreground: hsl(222, 84%, 4.9%);
+  --sidebar-primary: hsl(221, 91%, 60%);
+  --sidebar-primary-foreground: hsl(210, 40%, 98%);
+  --sidebar-accent: hsl(210, 40%, 96%);
+  --sidebar-accent-foreground: hsl(222.2, 84%, 4.9%);
+  --sidebar-border: hsl(214.3, 31.8%, 91.4%);
+  --sidebar-ring: hsl(221, 91%, 60%);
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: "Fira Code", ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  --radius: 0.75rem;
+  --shadow-2xs: 0px 1px 2px 0px hsl(221, 91%, 60%, 0.05);
+  --shadow-xs: 0px 1px 2px 0px hsl(221, 91%, 60%, 0.1);
+  --shadow-sm: 0px 1px 3px 0px hsl(221, 91%, 60%, 0.1), 0px 1px 2px -1px hsl(221, 91%, 60%, 0.1);
+  --shadow: 0px 4px 6px -1px hsl(221, 91%, 60%, 0.1), 0px 2px 4px -2px hsl(221, 91%, 60%, 0.1);
+  --shadow-md: 0px 6px 16px -4px hsl(221, 91%, 60%, 0.1), 0px 4px 6px -2px hsl(221, 91%, 60%, 0.05);
+  --shadow-lg: 0px 10px 15px -3px hsl(221, 91%, 60%, 0.1), 0px 4px 6px -4px hsl(221, 91%, 60%, 0.1);
+  --shadow-xl: 0px 20px 25px -5px hsl(221, 91%, 60%, 0.1), 0px 8px 10px -6px hsl(221, 91%, 60%, 0.1);
+  --shadow-2xl: 0px 25px 50px -12px hsl(221, 91%, 60%, 0.25);
+  --warning: hsl(38, 92%, 50%);
+  --warning-foreground: hsl(48, 96%, 89%);
+  --success: hsl(160, 84.1%, 39.4%);
+  --success-foreground: hsl(210, 40%, 98%);
+  --expense-red: hsl(0, 84.2%, 60.2%);
+  --income-green: hsl(160, 84.1%, 39.4%);
+  --budget-orange: hsl(38, 92%, 50%);
+  --savings-blue: hsl(221, 91%, 60%);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+}
+
+.dark {
+  --background: hsl(222.2, 84%, 4.9%);
+  --foreground: hsl(210, 40%, 98%);
+  --card: hsl(222.2, 84%, 4.9%);
+  --card-foreground: hsl(210, 40%, 98%);
+  --popover: hsl(222.2, 84%, 4.9%);
+  --popover-foreground: hsl(210, 40%, 98%);
+  --primary: hsl(217.2, 91.2%, 59.8%);
+  --primary-foreground: hsl(222.2, 84%, 4.9%);
+  --secondary: hsl(217.2, 32.6%, 17.5%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --muted: hsl(217.2, 32.6%, 17.5%);
+  --muted-foreground: hsl(215, 20.2%, 65.1%);
+  --accent: hsl(217.2, 32.6%, 17.5%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --border: hsl(217.2, 32.6%, 17.5%);
+  --input: hsl(217.2, 32.6%, 17.5%);
+  --ring: hsl(224.3, 76.3%, 58%);
+  --chart-1: hsl(220, 70%, 50%);
+  --chart-2: hsl(160, 60%, 45%);
+  --chart-3: hsl(30, 80%, 55%);
+  --chart-4: hsl(280, 65%, 60%);
+  --chart-5: hsl(340, 75%, 55%);
+  --sidebar: hsl(222.2, 84%, 4.9%);
+  --sidebar-foreground: hsl(210, 40%, 98%);
+  --sidebar-primary: hsl(217.2, 91.2%, 59.8%);
+  --sidebar-primary-foreground: hsl(222.2, 84%, 4.9%);
+  --sidebar-accent: hsl(217.2, 32.6%, 17.5%);
+  --sidebar-accent-foreground: hsl(210, 40%, 98%);
+  --sidebar-border: hsl(217.2, 32.6%, 17.5%);
+  --sidebar-ring: hsl(224.3, 76.3%, 58%);
+  --warning: hsl(38, 92%, 50%);
+  --warning-foreground: hsl(222.2, 84%, 4.9%);
+  --success: hsl(160, 84.1%, 39.4%);
+  --success-foreground: hsl(210, 40%, 98%);
+  --expense-red: hsl(0, 84.2%, 60.2%);
+  --income-green: hsl(160, 84.1%, 39.4%);
+  --budget-orange: hsl(38, 92%, 50%);
+  --savings-blue: hsl(217.2, 91.2%, 59.8%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+    line-height: 1.2;
+  }
+}
+
+@layer components {
+  .metric-card {
+    @apply text-center p-6;
+  }
+
+  .metric-value {
+    @apply text-2xl font-bold mb-2;
+  }
+
+  .metric-label {
+    @apply text-muted-foreground text-sm uppercase tracking-wide font-medium;
+  }
+
+  .expense-amount {
+    @apply font-semibold;
+  }
+
+  .category-badge {
+    @apply px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .progress-custom {
+    @apply h-2 rounded-full bg-muted;
+  }
+
+  .progress-bar-custom {
+    @apply h-full rounded-full transition-all duration-300;
+  }
+
+  .chart-container {
+    @apply relative h-64 my-4;
+  }
+
+  .alert-custom {
+    @apply rounded-lg border p-4;
+  }
+
+  .alert-warning-custom {
+    @apply bg-warning/10 border-warning text-warning-foreground;
+  }
+
+  .fab {
+    @apply w-14 h-14 rounded-full bg-primary border-0 text-primary-foreground text-xl shadow-lg transition-all duration-200;
+  }
+
+  .fab:hover {
+    @apply bg-primary/90 scale-110;
+  }
+}
+
+@layer utilities {
+  .text-expense {
+    color: var(--expense-red);
+  }
+
+  .text-income {
+    color: var(--income-green);
+  }
+
+  .text-budget {
+    color: var(--budget-orange);
+  }
+
+  .text-savings {
+    color: var(--savings-blue);
+  }
+
+  .bg-expense {
+    background-color: var(--expense-red);
+  }
+
+  .bg-income {
+    background-color: var(--income-green);
+  }
+
+  .bg-budget {
+    background-color: var(--budget-orange);
+  }
+
+  .bg-savings {
+    background-color: var(--savings-blue);
+  }
+
+  .border-expense {
+    border-color: var(--expense-red);
+  }
+
+  .border-income {
+    border-color: var(--income-green);
+  }
+
+  .border-budget {
+    border-color: var(--budget-orange);
+  }
+
+  .border-savings {
+    border-color: var(--savings-blue);
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .mobile-hide {
+    display: none;
+  }
+  
+  .metric-value {
+    @apply text-xl;
+  }
+}
+
+/* Scrollbar styling */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted-foreground) var(--muted);
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: var(--muted-foreground);
+  border-radius: 3px;
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Focus styles for accessibility */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+}
+
+/* Custom form styles */
+.form-input {
+  @apply block w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+}
+
+.form-select {
+  @apply block w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg, var(--muted) 25%, var(--muted-foreground) 50%, var(--muted) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
