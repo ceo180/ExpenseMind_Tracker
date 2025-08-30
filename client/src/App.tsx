@@ -8,6 +8,7 @@ import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
 import Dashboard from "@/pages/dashboard";
 import Expenses from "@/pages/expenses";
+import IncomePage from "@/pages/income";
 import Budgets from "@/pages/budgets";
 import Categories from "@/pages/categories";
 import Navbar from "@/components/layout/navbar";
@@ -45,6 +46,7 @@ function Router() {
           <Switch>
             <Route path="/" component={Dashboard} />
             <Route path="/expenses" component={Expenses} />
+            <Route path="/income" component={IncomePage} />
             <Route path="/budgets" component={Budgets} />
             <Route path="/categories" component={Categories} />
             <Route component={NotFound} />
