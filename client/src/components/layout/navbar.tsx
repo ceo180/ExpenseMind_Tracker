@@ -36,14 +36,22 @@ export default function Navbar() {
     <nav className="bg-card border-b border-border sticky top-0 z-50">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex items-center">
+          {/* Logo and Navigation */}
+          <div className="flex items-center space-x-8">
             <div className="flex items-center space-x-2">
               <Wallet className="h-8 w-8 text-primary" />
               <span className="text-xl font-bold text-primary" data-testid="text-app-name">
                 ExpenseTracker
               </span>
             </div>
+            {user && (
+              <div className="hidden md:flex items-center space-x-4">
+                <a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground">Dashboard</a>
+                <a href="/expenses" className="text-sm font-medium text-muted-foreground hover:text-foreground">Expenses</a>
+                <a href="/categories" className="text-sm font-medium text-muted-foreground hover:text-foreground">Categories</a>
+                <a href="/budgets" className="text-sm font-medium text-muted-foreground hover:text-foreground">Budgets</a>
+              </div>
+            )}
           </div>
 
           {/* Mobile menu button */}
