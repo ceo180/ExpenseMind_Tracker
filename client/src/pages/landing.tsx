@@ -1,8 +1,104 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Wallet, PieChart, Target, TrendingUp, Shield, Users } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Landing() {
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const { toast } = useToast();
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, firstName, lastName }),
+      });
+
+      if (response.ok) {
+        window.location.href = "/";
+      } else {
+        const data = await response.json();
+        toast({
+          title: "Login failed",
+          description: data.message || "Please try again",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to connect to server",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const LoginDialog = () => (
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger asChild>
+        <Button data-testid="button-login">Sign In</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Welcome to ExpenseTracker</DialogTitle>
+          <DialogDescription>
+            Enter your email to sign in or create an account
+          </DialogDescription>
+        </DialogHeader>
+        <form onSubmit={handleLogin} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="firstName">First Name (optional)</Label>
+            <Input
+              id="firstName"
+              type="text"
+              placeholder="John"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="lastName">Last Name (optional)</Label>
+            <Input
+              id="lastName"
+              type="text"
+              placeholder="Doe"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? "Signing in..." : "Continue"}
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       {/* Header */}
@@ -12,12 +108,7 @@ export default function Landing() {
             <Wallet className="h-8 w-8 text-primary" />
             <span className="text-2xl font-bold text-primary">ExpenseTracker</span>
           </div>
-          <Button 
-            onClick={() => window.location.href = '/api/login'}
-            data-testid="button-login"
-          >
-            Sign In
-          </Button>
+          <LoginDialog />
         </nav>
       </header>
 
@@ -35,7 +126,7 @@ export default function Landing() {
           <Button 
             size="lg" 
             className="text-lg px-8 py-3"
-            onClick={() => window.location.href = '/api/login'}
+            onClick={() => setIsOpen(true)}
             data-testid="button-get-started"
           >
             Get Started Free
@@ -143,7 +234,7 @@ export default function Landing() {
             size="lg" 
             variant="secondary" 
             className="text-lg px-8 py-3"
-            onClick={() => window.location.href = '/api/login'}
+            onClick={() => setIsOpen(true)}
             data-testid="button-start-tracking"
           >
             Start Tracking Today
