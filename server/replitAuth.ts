@@ -39,6 +39,8 @@ export async function setupAuth(app: Express) {
         return res.status(400).json({ message: "Email is required" });
       }
 
+      console.log("Login attempt for:", email);
+
       const user = await storage.upsertUser({
         id: email,
         email,
@@ -47,15 +49,25 @@ export async function setupAuth(app: Express) {
         profileImageUrl: null,
       });
 
+      console.log("User created/found:", user.id);
+
       (req.session as any).user = {
         claims: { sub: user.id },
         email: user.email,
       };
 
-      res.json(user);
+      // Save session explicitly
+      req.session.save((err) => {
+        if (err) {
+          console.error("Session save error:", err);
+          return res.status(500).json({ message: "Failed to save session" });
+        }
+        console.log("Session saved successfully");
+        res.json(user);
+      });
     } catch (error) {
       console.error("Login error:", error);
-      res.status(500).json({ message: "Login failed" });
+      res.status(500).json({ message: "Login failed: " + (error as Error).message });
     }
   });
 
