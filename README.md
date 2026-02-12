@@ -127,6 +127,18 @@ A comprehensive personal expense tracking web application that helps users monit
 - **budgets** - Budget goals per category
 - **sessions** - Authentication sessions
 
+## Deployment (Railway)
+
+1. Create account at [railway.app](https://railway.app)
+2. Click "New Project" → "Deploy from GitHub repo"
+3. Select your `ExpenseMind_Tracker` repository
+4. Add a PostgreSQL database:
+   - Click "New" → "Database" → "PostgreSQL"
+5. Set environment variables in your web service:
+   - `DATABASE_URL` - Copy from PostgreSQL service (auto-configured if you link services)
+   - `SESSION_SECRET` - Generate a random string
+6. Railway will auto-deploy on every push to `main`
+
 ## License
 
 MIT
