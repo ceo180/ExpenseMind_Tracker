@@ -24,6 +24,7 @@ export default function Landing() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, firstName, lastName }),
+        credentials: "include",
       });
 
       if (response.ok) {
