@@ -11,6 +11,7 @@ import Expenses from "@/pages/expenses";
 import IncomePage from "@/pages/income";
 import Budgets from "@/pages/budgets";
 import Categories from "@/pages/categories";
+import Reports from "@/pages/reports";
 import Navbar from "@/components/layout/navbar";
 import Sidebar from "@/components/layout/sidebar";
 import { Wallet } from "lucide-react";
@@ -47,7 +48,7 @@ function Router() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       <Navbar />
       <div className="flex">
         <Sidebar />
@@ -58,6 +59,7 @@ function Router() {
             <Route path="/income" component={IncomePage} />
             <Route path="/budgets" component={Budgets} />
             <Route path="/categories" component={Categories} />
+            <Route path="/reports" component={Reports} />
             <Route component={NotFound} />
           </Switch>
         </main>

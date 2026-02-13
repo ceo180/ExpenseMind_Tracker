@@ -10,9 +10,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import { z } from "zod";
 import { format } from "date-fns";
+import { Link } from "wouter";
+import { Tags, AlertTriangle, ArrowRight } from "lucide-react";
 
 const formSchema = insertExpenseSchema.extend({
   amount: z.string().min(1, "Amount is required"),
@@ -106,6 +109,34 @@ export default function ExpenseForm({ expense, onSuccess }: ExpenseFormProps) {
   const onSubmit = (data: FormData) => {
     mutation.mutate(data);
   };
+
+  // Show message if no categories exist
+  if (!categories || (categories as any[]).length === 0) {
+    return (
+      <div className="space-y-4 py-4">
+        <Alert className="border-0 bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-xl">
+          <div className="flex items-start gap-3">
+            <div className="p-2 bg-amber-500/20 rounded-lg shrink-0">
+              <AlertTriangle className="h-5 w-5 text-amber-600" />
+            </div>
+            <div className="space-y-1">
+              <p className="font-semibold text-amber-800 dark:text-amber-200">No Categories Found</p>
+              <AlertDescription className="text-amber-700 dark:text-amber-300">
+                You need to create at least one category before adding expenses. Categories help you organize and track your spending.
+              </AlertDescription>
+            </div>
+          </div>
+        </Alert>
+        <Link href="/categories">
+          <Button className="w-full rounded-xl h-12 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 shadow-lg shadow-amber-500/25">
+            <Tags className="h-4 w-4 mr-2" />
+            Create Your First Category
+            <ArrowRight className="h-4 w-4 ml-2" />
+          </Button>
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <Form {...form}>
