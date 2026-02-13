@@ -80,20 +80,23 @@ export default function Expenses() {
   };
 
   return (
-    <div className="p-4 lg:p-6 space-y-6">
+    <div className="p-4 lg:p-8 space-y-8 page-enter">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl lg:text-3xl font-bold text-foreground" data-testid="text-expenses-title">
+          <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 bg-clip-text text-transparent" data-testid="text-expenses-title">
             Expenses
           </h1>
-          <p className="text-muted-foreground" data-testid="text-expenses-subtitle">
+          <p className="text-muted-foreground text-lg" data-testid="text-expenses-subtitle">
             Track and manage all your expenses
           </p>
         </div>
         <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
           <DialogTrigger asChild>
-            <Button data-testid="button-add-expense">
+            <Button 
+              className="rounded-full px-6 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:scale-105 transition-all duration-300"
+              data-testid="button-add-expense"
+            >
               <Plus className="h-4 w-4 mr-2" />
               Add Expense
             </Button>

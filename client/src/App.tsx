@@ -13,16 +13,25 @@ import Budgets from "@/pages/budgets";
 import Categories from "@/pages/categories";
 import Navbar from "@/components/layout/navbar";
 import Sidebar from "@/components/layout/sidebar";
+import { Wallet } from "lucide-react";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="min-h-screen flex items-center justify-center gradient-hero">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-4 text-muted-foreground">Loading...</p>
+          <div className="relative mb-6">
+            <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-xl animate-pulse" />
+            <div className="relative bg-gradient-to-br from-primary to-indigo-600 p-4 rounded-2xl shadow-xl shadow-primary/30">
+              <Wallet className="h-10 w-10 text-white animate-pulse" />
+            </div>
+          </div>
+          <div className="relative">
+            <div className="w-12 h-12 rounded-full border-4 border-primary/20 border-t-primary animate-spin mx-auto" />
+          </div>
+          <p className="mt-6 text-muted-foreground font-medium">Loading your finances...</p>
         </div>
       </div>
     );
@@ -38,11 +47,11 @@ function Router() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       <Navbar />
       <div className="flex">
         <Sidebar />
-        <main className="flex-1 lg:ml-64">
+        <main className="flex-1 lg:ml-72 min-h-screen">
           <Switch>
             <Route path="/" component={Dashboard} />
             <Route path="/expenses" component={Expenses} />
